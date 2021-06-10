@@ -1,0 +1,10 @@
+.about {
+    color: gray;
+    align-content: center;
+    text-align: center;
+  }
+@media (max-width: 560px) {
+    .about {
+      flex: 0 0 100%;
+    }
+  }
