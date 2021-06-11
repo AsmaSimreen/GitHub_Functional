@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./css/Card.css";
 import { Link } from "react-router-dom";
+
 function Card(props) {
   return (
     <div className="card">

@@ -8,8 +8,6 @@ export default function Dashboard() {
   const [error, setError] = useState(false);
   const [users, setUsers] = useState(null);
   const [loading, setloading] = useState(true);
-
-
   // export default class Dashboard extends Component {
   //   state = {
   //     query: "",
@@ -22,7 +20,6 @@ export default function Dashboard() {
         const res = await axios.get("https://api.github.com/users");
         setUsers(res.data);
         setloading(false);
-
       } catch (err) {
         console.log(err);
       }
@@ -66,7 +63,6 @@ export default function Dashboard() {
 
       setUsers(res.data.items);
       setloading(false);
-
     } catch {
       console.log("Something went wrong");
     }

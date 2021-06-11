@@ -12,18 +12,22 @@ export default function User(props) {
     //         user: {},
     //     };
     // async componentDidMount() {
-    useEffect(async () => {
-        const username = props.params.username;
-        const data = await Promise.all([
-            axios.get(
-                `https://api.github.com/users/${username}/repos?page=1&per_page=5`
-            ),
-            axios.get(`https://api.github.com/users/${username}`),
-        ]);
-        setRepos(data[0].data);
-        setUser(data[1].data);
+    useEffect(() => {
+        async function getUserandRepos() {
+            const username = props.params.username;
+            const [allrepos,muyser] = await Promise.all([
+                axios.get(
+                    `https://api.github.com/users/${username}/repos?page=1&per_page=5`
+                ),
+                axios.get(`https://api.github.com/users/${username}`),
+            ]);
+            setRepos(allrepos);
+            setUser(muyser);
 
-        // this.setState({ repos: data[0].data, user: data[1].data });
+            // this.setState({ repos: data[0].data, user: data[1].data });
+        }
+        getUserandRepos();
+        //eslint-disable-next-line
     }, [])
 
     return (
