@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RepoItem from "./RepoItem";
 import "./css/User.css";
-
-export default function User(props) {
+import { useParams } from "react-router-dom";
+export default function User() {
     const [repos, setRepos] = useState([]);
     const [user, setUser] = useState({});
+    const params = useParams();
     // export default class User extends Component {
     //     state = {
     //         repos: [],
@@ -14,21 +15,21 @@ export default function User(props) {
     // async componentDidMount() {
     useEffect(() => {
         async function getUserandRepos() {
-            const username = props.params.username;
-            const [allrepos,muyser] = await Promise.all([
+            const username = params.username;
+            const [allrepos, myuser] = await Promise.all([
                 axios.get(
                     `https://api.github.com/users/${username}/repos?page=1&per_page=5`
                 ),
                 axios.get(`https://api.github.com/users/${username}`),
             ]);
-            setRepos(allrepos);
-            setUser(muyser);
+            setRepos(allrepos.data);
+            setUser(myuser.data);
 
             // this.setState({ repos: data[0].data, user: data[1].data });
         }
         getUserandRepos();
         //eslint-disable-next-line
-    }, [])
+    }, []);
 
     return (
         <>
