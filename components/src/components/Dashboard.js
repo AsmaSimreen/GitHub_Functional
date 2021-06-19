@@ -58,7 +58,7 @@ export default function Dashboard() {
       }
       setloading(true);
       const res = await axios.get(
-        `https://api.github.com/search/users?q=${this.state.query}`
+        `https://api.github.com/search/users?q=${query}`
       );
 
       setUsers(res.data.items);
